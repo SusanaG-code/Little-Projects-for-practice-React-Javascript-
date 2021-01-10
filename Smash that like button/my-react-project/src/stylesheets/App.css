@@ -1,0 +1,43 @@
+.App {
+  background-color: #3b5998;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.btn {
+  height: 100px;
+  width: 200px;
+  position: relative;
+  background-color: transparent;
+  border-style: none;
+  outline: none;
+  top: 26px;
+}
+
+.span {
+  top: 40px;
+  position: absolute;
+  right: 20px;
+  font-size: 22px;
+}
+
+.dislike {
+  width: 100px;
+  height: 46px;
+}
+
+.dislike-btn {
+  width: 120px;
+  height: 100px;
+  background-color: transparent;
+  border-style: none;
+  outline: none;
+}

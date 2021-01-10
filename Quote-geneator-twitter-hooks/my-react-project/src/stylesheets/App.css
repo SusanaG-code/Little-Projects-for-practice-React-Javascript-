@@ -1,0 +1,21 @@
+.App {
+  background-color: purple;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: "Cinzel Decorative", cursive;
+  font-size: 30px;
+  font-weight: 100;
+  width: 290px;
+}
+
+.main-box {
+  border: solid coral 10px;
+  background-color: pink;
+}
