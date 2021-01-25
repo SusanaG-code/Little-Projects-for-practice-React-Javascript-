@@ -1,0 +1,6 @@
+.done {
+  text-decoration: line-through;
+}
+.pending .hurry {
+  color: red;
+}

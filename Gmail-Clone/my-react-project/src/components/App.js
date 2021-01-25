@@ -1,18 +1,20 @@
-import React, { useState } from "react";
-import "../stylesheets/App.css";
+import React, { Switch, Route, useState } from "react";
+import Header from "./Header";
 import EmailItem from "./EmailItem";
 import EmailReader from "./EmailReader";
-import Header from "./Header";
-import apiEmails from "../data/apiEmails.json";
+import apiEmails from "../data/emails.json";
+import "../stylesheets/App.css";
 
-function App() {
+const App = () => {
+  // states
   const [emails, setEmails] = useState(apiEmails);
   const [inboxFilter, setInboxFilter] = useState("");
   const [showInbox, setShowInbox] = useState(true);
   const [showEmailId, setShowEmailId] = useState("");
 
+  // event handlers
   const handleInboxFilter = () => {
-    setInboxFilter(true);
+    setShowInbox(true);
   };
 
   const handleDeleteFilter = () => {
@@ -21,6 +23,15 @@ function App() {
 
   const handleTextFilter = (data) => {
     setInboxFilter(data.value);
+  };
+
+  const handleSelectEmail = (emailId) => {
+    // set email id
+    setShowEmailId(emailId);
+    // set email read attribute to true
+    const email = emails.find((email) => email.id === emailId);
+    email.read = true;
+    setEmails([...emails]);
   };
 
   const handleDeleteEmail = (emailId) => {
@@ -34,41 +45,110 @@ function App() {
     setEmails([...emails]);
   };
 
-  //Filter emails by the user input (state)
-  // const filterEmails = apiEmails.filter((email) => {
-  //   return (
-  //     email.fromName.toLowerCase().includes(inboxFilter.toLowerCase()) ||
-  //     email.subject.toLowerCase().includes(inboxFilter.toLowerCase) ||
-  //     email.body.toLowerCase().includes(inboxFilter.toLowerCase)
-  //   );
-  // });
-  apiEmails.map((email) => {
-    return (
-      <EmailItem
-        from={email.fromName}
-        subject={email.subject}
-        time={email.date}
-        key={email.id}
-        id={email.id}
-        deleted={email.deleted}
-        read={email.read}
-        handleDeleteEmail={handleDeleteEmail}
-      />
-    );
-  });
+  const handleCloseEmail = () => {
+    setShowEmailId("");
+  };
 
+  // render helpers
+  const renderFilters = () => {
+    const emailType = showInbox ? "recibidos" : "borrados";
+    const filterText =
+      inboxFilter === "" ? (
+        "y sin filtrar."
+      ) : (
+        <span>
+          y filtrando por <span className="text--bold">{inboxFilter}</span>.
+        </span>
+      );
+    return (
+      <p className="mb-1">
+        La usuaria está visualizando los emails{" "}
+        <span className="text--bold">{emailType}</span> {filterText}
+      </p>
+    );
+  };
+
+  const renderEmails = () => {
+    const lowerCaseInboxFilter = inboxFilter.toLowerCase();
+    return (
+      emails
+        // filter by inbox vs deleted
+        .filter((email) => {
+          // return showInbox !== email.deleted;
+          return showInbox === true ? !email.deleted : email.deleted;
+        })
+        // filter by inboxFilter text
+        .filter((email) => {
+          return (
+            email.fromName.toLowerCase().includes(lowerCaseInboxFilter) ||
+            email.subject.toLowerCase().includes(lowerCaseInboxFilter) ||
+            email.body.toLowerCase().includes(lowerCaseInboxFilter)
+          );
+        })
+        .map((email) => {
+          return (
+            <EmailItem
+              key={email.id}
+              id={email.id}
+              from={email.fromName}
+              subject={email.subject}
+              time={email.date}
+              read={email.read}
+              deleted={email.deleted}
+              handleSelectEmail={handleSelectEmail}
+              handleDeleteEmail={handleDeleteEmail}
+            />
+          );
+        })
+    );
+  };
+
+  const renderEmailDetail = () => {
+    const selectedEmail = emails.find((email) => email.id === showEmailId);
+    if (selectedEmail) {
+      return (
+        <EmailReader
+          id={selectedEmail.id}
+          fromName={selectedEmail.fromName}
+          fromEmail={selectedEmail.fromEmail}
+          subject={selectedEmail.subject}
+          body={selectedEmail.body}
+          handleCloseEmail={handleCloseEmail}
+          handleDeleteEmail={handleDeleteEmail}
+        />
+      );
+    }
+  };
+  console.log("Renderizando");
   return (
     <div>
+      <Switch>
+        <Route exact path="/" />
+        <Route path="/child/:id" component={Header} />
+      </Switch>
+
+      <Switch>
+        <Route exact path="/" />
+        <Route path="/child/:id">
+          <Header />
+        </Route>
+      </Switch>
+
       <Header
         handleInboxFilter={handleInboxFilter}
         handleDeleteFilter={handleDeleteFilter}
         handleTextFilter={handleTextFilter}
-      ></Header>
-      <p>La usuaria está filtrando por: {inboxFilter}</p>
-      <table class="table">{/* <tbody>{filterEmails}</tbody> */}</table>
-      <EmailReader></EmailReader>
+      />
+
+      {renderFilters()}
+
+      <table className="table">
+        <tbody>{renderEmails()}</tbody>
+      </table>
+
+      {renderEmailDetail()}
     </div>
   );
-}
+};
 
 export default App;

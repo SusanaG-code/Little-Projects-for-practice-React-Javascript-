@@ -7,7 +7,7 @@ function App() {
   const [quote, setQuote] = useState("");
   const [character, setCharacter] = useState("");
   const [house, setHouse] = useState("");
-  const [color, setColor] = useState("");
+
   useEffect(() => {
     api.getDataFromApi().then((data) => {
       setQuote(data.sentence);
@@ -20,7 +20,6 @@ function App() {
       setQuote(data.sentence);
       setCharacter(data.character);
       setHouse(data.character.house.name);
-      setColor(color);
     });
   };
 
