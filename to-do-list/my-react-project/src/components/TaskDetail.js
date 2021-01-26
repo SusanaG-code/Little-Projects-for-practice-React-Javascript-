@@ -16,7 +16,7 @@ const TaskDetail = (props) => {
         type="checkbox"
         name="task"
         id="task"
-        checked=""
+        checked="{false}"
         onChange={clickTask}
       ></input>
       <label htmlFor="t1">{props.subject}</label>

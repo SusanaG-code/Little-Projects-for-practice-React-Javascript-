@@ -3,7 +3,7 @@
 function getWeather(event) {
   // event.preventDefault();
   const cityName = searchCity.value;
-  if (cityName.trim().length === 0 || cityName.value.includes(2)) {
+  if (cityName.trim().length === 0) {
     return alert("Please enter a City Name");
   }
 
