@@ -11,15 +11,17 @@ const TaskDetail = (props) => {
   const styleDate = props.date <= 11 ? "hurry" : "";
 
   return (
-    <div className={styleTask}>
-      <input
-        type="checkbox"
-        name="task"
-        id="task"
-        checked="{false}"
-        onChange={clickTask}
-      ></input>
-      <label htmlFor="t1">{props.subject}</label>
+    <div className={`box ${styleTask}`}>
+      <div className="two">
+        <input
+          type="checkbox"
+          name="task"
+          id="task"
+          checked="{false}"
+          onChange={clickTask}
+        ></input>
+        <label htmlFor="t1">{props.subject}</label>
+      </div>
       <span className={`"clase"+ ${styleDate}`}>{props.date}nov</span>
     </div>
   );

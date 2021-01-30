@@ -5,9 +5,9 @@ import TaskCreate from "./TaskCreate";
 
 function App(props) {
   const initialData = [
-    { subject: "Estdiar React", date: 11 },
-    { subject: "Estudiar Javascript", date: 11 },
-    { subject: "Estudias Node", date: 12 },
+    { subject: "Practicar React", date: 11 },
+    { subject: "Practicar Javascript", date: 11 },
+    { subject: "Practicar Node", date: 12 },
   ];
 
   const [taskList, setTaskList] = useState(initialData);

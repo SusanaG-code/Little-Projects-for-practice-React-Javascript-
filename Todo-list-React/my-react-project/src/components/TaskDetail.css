@@ -4,3 +4,16 @@
 .pending .hurry {
   color: red;
 }
+
+.box {
+  border: solid 2px black;
+  margin-bottom: 30px;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.two {
+  border: solid 3px red;
+}

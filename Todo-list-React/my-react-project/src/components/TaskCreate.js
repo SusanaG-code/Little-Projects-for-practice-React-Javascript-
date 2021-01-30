@@ -23,11 +23,15 @@ const TaskCreate = (props) => {
   return (
     <div>
       <section className="new__fill">
-        <input type="text" onChange={changeSubject}></input>
-        <input type="number" onChange={changeDate} />
+        <input
+          type="text"
+          onChange={changeSubject}
+          className="input-text"
+        ></input>
+        <input type="number" onChange={changeDate} className="input-number" />
         <div>
           <button className="new__fill--button" onClick={clickButton}>
-            Añadir tarea
+            Add
           </button>
         </div>
       </section>
