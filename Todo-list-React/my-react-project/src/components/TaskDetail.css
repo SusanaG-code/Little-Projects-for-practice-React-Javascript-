@@ -3,6 +3,7 @@
 }
 .pending .hurry {
   color: red;
+  border: solid 4px blue;
 }
 
 .box {
@@ -17,6 +18,8 @@
 .two {
   border: solid 3px red;
   width: 400px;
+  justify-content: space-evenly;
+  display: flex;
 }
 
 .label {
