@@ -5,11 +5,15 @@
 }
 
 .input-number {
-  width: 50px;
+  width: 100px;
   margin-left: 20px;
 }
 
 .input-text {
-  width: 100px;
+  width: 500px;
   margin-bottom: 20px;
+  border: solid 3px red;
+  color: red;
+
+  padding-left: 100px;
 }

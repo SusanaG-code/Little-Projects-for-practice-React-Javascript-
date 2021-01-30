@@ -27,11 +27,17 @@ const TaskCreate = (props) => {
           type="text"
           onChange={changeSubject}
           className="input-text"
+          placeholder="What needs to be done"
         ></input>
-        <input type="number" onChange={changeDate} className="input-number" />
+        <input
+          type="number"
+          onChange={changeDate}
+          className="input-number"
+          placeholder="Deadline"
+        />
         <div>
           <button className="new__fill--button" onClick={clickButton}>
-            Add
+            Add task
           </button>
         </div>
       </section>

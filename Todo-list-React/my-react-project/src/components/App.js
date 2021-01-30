@@ -20,7 +20,7 @@ function App(props) {
     <div className="App">
       <header class="header"></header>
       <main className="container">
-        <h3>Lista de Tareas</h3>
+        <h3>To-do List</h3>
         <TaskList data={taskList}></TaskList>
         <TaskCreate handleCreate={handleCreate}></TaskCreate>
       </main>
