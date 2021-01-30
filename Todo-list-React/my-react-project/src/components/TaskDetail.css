@@ -16,4 +16,14 @@
 
 .two {
   border: solid 3px red;
+  width: 400px;
+}
+
+.label {
+  margin-left: 30px;
+}
+
+.checkBox {
+  height: 20px;
+  width: 30px;
 }

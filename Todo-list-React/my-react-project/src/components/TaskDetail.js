@@ -19,8 +19,11 @@ const TaskDetail = (props) => {
           id="task"
           checked="{false}"
           onChange={clickTask}
+          className="checkBox"
         ></input>
-        <label htmlFor="t1">{props.subject}</label>
+        <label className="label" htmlFor="t1">
+          {props.subject}{" "}
+        </label>
       </div>
       <span className={`"clase"+ ${styleDate}`}>{props.date}nov</span>
     </div>
